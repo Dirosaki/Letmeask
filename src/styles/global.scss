@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-black: #29292e;
+  --color-shadow: #050206;
+  --color-purple: #835afd;
+  --color-purple-hover: #6f4bd8;
+  --color-gradient: linear-gradient(139.44deg, #485bff 0%, #ff59f8 96.19%);
+  --color-danger: #e73f5d;
+  --color-danger-hover: #d73754;
+  --color-gray-200: #dbdcdd;
+  --color-gray-200-hover: #cecece;
+  --color-gray-400: #a8a8b3;
+  --color-gray-400-hover: #7e7e86;
+  --color-gray-800: #737380;
+  --color-background: #f8f8f8;
+  --color-details: #fefefe;
+  --color-pink-400: #d67ee2;
+  --color-pink-700: #e559f9;
+  --box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  --font-roboto: "Roboto", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-black);
+}
+
+body,
+input,
+button,
+textarea {
+  font: 400 1rem var(--font-roboto);
+}
+
+button {
+  cursor: pointer;
+}

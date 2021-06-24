@@ -1,0 +1,37 @@
+.button {
+  padding: 0 2rem;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-purple);
+  font-weight: 500;
+  color: #fff;
+  transition: background 0.2s;
+
+  img {
+    margin-right: 8px;
+  }
+
+  &.outlined {
+    background: #fff;
+    border: 1px solid var(--color-purple);
+    color: var(--color-purple);
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+
+  &:not(:disabled):not(.outlined):hover {
+    background: var(--color-purple-hover);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

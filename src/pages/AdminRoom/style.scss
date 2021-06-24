@@ -1,0 +1,58 @@
+#page-room {
+  header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e2e2;
+
+    .content {
+      margin: 0 auto;
+      max-width: 1120px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      > img {
+        max-height: 45px;
+      }
+
+      > div {
+        display: flex;
+        gap: 1rem;
+
+        button {
+          height: 40px;
+        }
+      }
+    }
+  }
+
+  main {
+    margin: 0 auto;
+    max-width: 800px;
+
+    .room-title {
+      margin: 2rem 0 1.5rem;
+      display: flex;
+      align-items: center;
+
+      h1 {
+        font-size: 1.5rem;
+        font-family: var(--font-poppins);
+        color: var(--color-black);
+      }
+
+      span {
+        margin-left: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
+        background: var(--color-pink-700);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #fff;
+      }
+    }
+
+    .question-list {
+      margin-top: 2rem;
+    }
+  }
+}
