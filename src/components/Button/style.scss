@@ -19,10 +19,11 @@
     background: #fff;
     border: 1px solid var(--color-purple);
     color: var(--color-purple);
-    transition: filter 0.2s;
+    transition: 0.2s;
 
     &:hover {
-      filter: brightness(0.9);
+      border-color: var(--color-purple-hover);
+      color: var(--color-purple-hover);
     }
   }
 

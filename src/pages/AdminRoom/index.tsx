@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import Modal from "react-modal";
 
 // import { useAuth } from "../../hooks/useAuth";
 import { useRoom } from "../../hooks/useRoom";
@@ -10,6 +12,8 @@ import { Question } from "../../components/Question";
 import { database } from "../../services/firebase";
 
 import logoImg from "../../assets/images/logo.svg";
+import emptyQuestionImg from "../../assets/images/empty-questions.svg";
+import closeImg from "../../assets/images/close.svg";
 
 import "./style.scss";
 
@@ -21,12 +25,21 @@ export function AdminRoom() {
   const params = useParams<RoomParams>();
   const roomId = params.id;
 
+  const [modalType, setModalType] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(true);
+
   // const { user } = useAuth();
 
   const history = useHistory();
   const { questions, title } = useRoom(roomId);
 
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
   async function handleEndRoom() {
+    setModalType("close");
+    setModalIsOpen(true);
     if (window.confirm("Você tem certeza que deseja encerrar essa sala?")) {
       await database.ref(`rooms/${roomId}`).update({
         endedAt: new Date(),
@@ -37,6 +50,7 @@ export function AdminRoom() {
   }
 
   async function handleDeleteQuestion(questionId: string) {
+    setModalType("exclude");
     if (window.confirm("Você tem certeza que deseja excluir essa pergunta?")) {
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
     }
@@ -62,6 +76,16 @@ export function AdminRoom() {
           {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
         </div>
 
+        {questions.length === 0 && (
+          <div className="empty-questions">
+            <img src={emptyQuestionImg} alt="" />
+            <strong>Nenhuma pergunta por aqui...</strong>
+            <p>
+              Envie o código desta sala para seus amigos e<br /> comece a
+              responder perguntas!
+            </p>
+          </div>
+        )}
         <div className="question-list">
           {questions.map((question) => (
             <Question
@@ -71,7 +95,7 @@ export function AdminRoom() {
             >
               <button
                 type="button"
-                className="trash-question"
+                className="delete-question"
                 onClick={() => handleDeleteQuestion(question.id)}
               >
                 <svg
@@ -101,6 +125,32 @@ export function AdminRoom() {
           ))}
         </div>
       </main>
+      <Modal
+        className="modal"
+        overlayClassName="modal-overlay"
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Modal"
+        ariaHideApp={false}
+      >
+        <img src={closeImg} alt="Close" />
+        <strong>
+          {modalType === "exclude" ? "Excluir pergunta" : "Encerrar sala"}
+        </strong>
+        <p>
+          {modalType === "exclude"
+            ? "Tem certeza que você deseja excluir essa pergunta?"
+            : "Tem certeza que você deseja encerrar esta sala?"}
+        </p>
+        <footer>
+          <button className="cancel" onClick={closeModal}>
+            Cancelar
+          </button>
+          <button className="confirm" onClick={closeModal}>
+            Sim, {modalType === "exclude" ? "excluir" : "encerrar"}
+          </button>
+        </footer>
+      </Modal>
     </div>
   );
 }

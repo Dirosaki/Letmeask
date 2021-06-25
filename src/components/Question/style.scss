@@ -55,7 +55,7 @@
         }
       }
 
-      &.trash-question {
+      &.delete-question {
         &:hover svg path {
           stroke: var(--color-danger);
         }
