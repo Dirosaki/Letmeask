@@ -88,6 +88,7 @@ export function Room() {
             className={newQuestion.trim() !== "" ? "filled" : ""}
             placeholder="O que você quer perguntar?"
             onChange={(event) => setNewQuestion(event.target.value)}
+            value={newQuestion}
           />
           <div className="form-footer">
             {user ? (
