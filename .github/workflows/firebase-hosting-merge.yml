@@ -13,9 +13,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: npm - install dependencies
       - run: npm install
-      - name: npm - build project,
+      - name: npm - build project
       - run: npm run build
-      env:
+        env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
           REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
@@ -31,4 +31,3 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_LETMEASK_C65F5 }}"
           channelId: live
           projectId: letmeask-c65f5
-        
